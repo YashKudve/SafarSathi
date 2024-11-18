@@ -1,3 +1,5 @@
+<p><strong style="font-size: 30px;">**SafarSathi – Your Personalized AI Travel Companion**</strong></p>
+
 **SafarSathi – Your Personalized AI Travel Companion**
 
 **SafarSathi** is an intelligent travel planner web app designed to make your journey planning seamless and stress-free. By taking user input such as budget, preferred travel destination, number of travelers, and other key preferences, SafarSathi curates personalized trip plans tailored to your needs. With SafarSathi, planning your next adventure is as easy as providing a few details and letting the app craft an itinerary that suits your desires.
