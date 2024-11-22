@@ -29,7 +29,7 @@ export const selectTravelsList = [
     },
 ]
 
-export const selectBudgetOPtions = [
+export const selectBudgetOptions = [
     {
         id:1,
         title:"Cheap",
@@ -39,7 +39,7 @@ export const selectBudgetOPtions = [
     {
         id:2,
         title:"Moderate",
-        desc:"Keep cpst on average side",
+        desc:"Keep cost on average side",
         icon:"💰",
     },
     {
