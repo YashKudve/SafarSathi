@@ -1,23 +1,43 @@
 import { Button } from '@/components/ui/button'
 import { selectBudgetOptions, selectTravelsList } from '@/constants/options'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function CreateTrip() {
 
-  const [input, setInput] = useState("")
+  const [input, setInput] = useState("");
+
+  const [formData,setFormData] = useState([]);
+
   const handleChange = (e) =>{
     setInput(e.target.value)
   }
+
+  const handleInputChange = (name,value) =>{
+    setFormData({
+      ...formData,
+      [name]:value
+    })
+  }
+
+  useEffect(()=>{
+
+  },[formData])
+
+
   return (
     <div className='sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10'>
-      <h2 className='font-bold text-3xl'>Tell us your travel preferences</h2>
-      <p className='mt-3 text-gray-500 text-xl'>Just provide some basic information, and SafarSathi will generate a customized iternary based on your preferences.</p>
+      <h2 className='font-bold text-3xl'>Tell us your travel preferences 🏕️🌴</h2>
+      <p className='mt-3 text-gray-500 text-xl'>Just provide some basic information, and SafarSathi will generate a customized iternary based on your preferences. </p>
 
       <div className='mt-20 flex flex-col gap-10'>
         <div>
           <h2 className='text-xl my-3 font-medium'>Enter the destination of your choice</h2>
           {/* <GooglePlacesAutocomplete
-          apikey=''
+          apikey={import.meta.env.}
+          selectProps={{
+          place,
+          onChange: () => {setPlace(v); handleInputChange('location',v)}
+          }}
           /> */}
         <input className='w-64 p-2 text-lg border-2 border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500' 
         type="text" 
@@ -29,7 +49,11 @@ function CreateTrip() {
 
         <div>
         <h2 className='text-xl my-3 font-medium'>How many days are you planning your trip?</h2>
-        <input className='w-64 p-2 text-lg border-2 border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500' type="number" placeholder='Ex.3' />
+        <input className='w-64 p-2 text-lg border-2 border-gray-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500' 
+        type="number" 
+        placeholder='Ex.3'
+        onChange={(e)=>handleInputChange('noOfDays', e.target.value)}
+        />
         </div>
 
       </div>
@@ -39,7 +63,10 @@ function CreateTrip() {
         <div className='grid grid-cols-5 mt-5 gap-5'>
           {selectBudgetOptions.map((item,index)=>{
             return(
-              <div key={index} className='p-4 border rounded-lg hover:shadow-lg cursor-pointer'>
+              <div key={index} 
+              className='p-4 border rounded-lg hover:shadow-lg cursor-pointer'
+              onClick={()=>handleInputChange('budget', item.people)}
+              >
               <h2 className='text-4xl'>{item.icon}</h2>
               <h2 className='font-bold text-lg'>{item.title}</h2>
               <h2 className='text-sm text-gray-500'>{item.desc}</h2>
