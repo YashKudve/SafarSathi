@@ -1,6 +1,7 @@
 import { Button } from '@/components/ui/button'
 import { selectBudgetOptions, selectTravelsList } from '@/constants/options'
 import React, { useEffect, useState } from 'react'
+import { toast } from 'sonner';
 
 function CreateTrip() {
 
@@ -25,10 +26,13 @@ function CreateTrip() {
   },[formData])
 
   const onGenerateTrip = () =>{
-    if(formData?.noOfDays>30){
-      alert("Number of Days cannot exceed 30")
+    if(formData?.noOfDays>30 && !formData?.location || !formData?.budget || !formData?.traveler){
+      // alert("Number of Days cannot exceed 30")
+      toast("Please fill all the details")
       return ;
     }
+
+    console.log(formData)
   }
 
 
@@ -108,7 +112,7 @@ function CreateTrip() {
       </div>
 
     {/* <Button>Generate Trip!</Button> */}
-    <button className="bg-orange-500 text-white font-semibold py-2 px-4 rounded hover:bg-orange-600 m-5">
+    <button onClick={onGenerateTrip} className="bg-orange-500 text-white font-semibold py-2 px-4 rounded hover:bg-orange-600 m-5">
   Generate Trip !
 </button>
 
