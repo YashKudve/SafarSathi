@@ -13,6 +13,7 @@ function CreateTrip() {
   }
 
   const handleInputChange = (name,value) =>{
+
     setFormData({
       ...formData,
       [name]:value
@@ -20,8 +21,15 @@ function CreateTrip() {
   }
 
   useEffect(()=>{
-
+    console.log(formData)
   },[formData])
+
+  const onGenerateTrip = () =>{
+    if(formData?.noOfDays>30){
+      alert("Number of Days cannot exceed 30")
+      return ;
+    }
+  }
 
 
   return (
@@ -64,8 +72,10 @@ function CreateTrip() {
           {selectBudgetOptions.map((item,index)=>{
             return(
               <div key={index} 
-              className='p-4 border rounded-lg hover:shadow-lg cursor-pointer'
-              onClick={()=>handleInputChange('budget', item.people)}
+              className={`p-4 border rounded-lg hover:shadow-lg cursor-pointer 
+                ${formData?.budget==item.title && "shadow-2xl border-black"}
+                `}
+              onClick={()=>handleInputChange('budget', item.title)}
               >
               <h2 className='text-4xl'>{item.icon}</h2>
               <h2 className='font-bold text-lg'>{item.title}</h2>
@@ -82,7 +92,12 @@ function CreateTrip() {
         <div className='grid grid-cols-5 mt-5 gap-5 mb-5'>
           {selectTravelsList.map((item,index)=>{
             return(
-              <div key={index} className='p-4 border rounded-lg hover:shadow-lg cursor-pointer'>
+              <div key={index} 
+              onClick={()=>handleInputChange('traveler', item.people)}
+              className={`p-4 border rounded-lg hover:shadow-lg cursor-pointer 
+                ${formData?.traveler==item.people && "shadow-2xl border-black"}
+                `}
+                >
               <h2 className='text-4xl'>{item.icon}</h2>
               <h2 className='font-bold text-lg'>{item.title}</h2>
               <h2 className='text-sm text-gray-500'>{item.desc}</h2>
@@ -93,7 +108,7 @@ function CreateTrip() {
       </div>
 
     {/* <Button>Generate Trip!</Button> */}
-    <button class="bg-orange-500 text-white font-semibold py-2 px-4 rounded hover:bg-orange-600 m-5">
+    <button className="bg-orange-500 text-white font-semibold py-2 px-4 rounded hover:bg-orange-600 m-5">
   Generate Trip !
 </button>
 
